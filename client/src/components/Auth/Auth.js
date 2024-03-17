@@ -13,7 +13,7 @@ import {gapi} from 'gapi-script';
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(true);
   const user = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
-  const clientId='66996932244-0mgme7gjmpj8olg3309v4qucckv9s7jj.apps.googleusercontent.com'
+  const clientId=""
   const classes = useStyle();
   const [userData,setUserData]=useState(user);
   const navigate=useNavigate();
