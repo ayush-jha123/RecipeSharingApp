@@ -1,9 +1,11 @@
 import express from 'express';
-import bodyParser from 'body-parser';
+// import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import userRoutes from './routes/userRoutes.js';
 import postRoutes from './routes/postRoutes.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app=express();
 app.use(cors());
@@ -17,8 +19,11 @@ app.get('/',(req,res)=>{
 })
 
 const PORT=process.env.PORT||5000;
-const url='mongodb://127.0.0.1:27017';
+const url = process.env.MONGO;
 
-mongoose.connect(url)
-.then(()=>app.listen(PORT,()=>console.log(`App is running at port ${PORT}`)))
-.catch(err=>console.log(err.message()))
+mongoose
+  .connect(url)
+  .then(() =>
+    app.listen(PORT, () => console.log(`App is running at port ${PORT}`))
+  )
+  .catch((err) => console.log(err.message));

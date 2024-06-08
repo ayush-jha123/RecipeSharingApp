@@ -52,7 +52,7 @@ const Editor = () => {
         <div>
           <FileBase type='file' multiple={false} onDone={({ base64 }) => setRecipe({ ...recipe, selectedFile: base64 })} />
         </div>
-        <ReactQuill theme="snow"  value={recipe.recipeProcess} readOnly={true} onChange={(process) => setRecipe({ ...recipe, recipeProcess: process })} />  {/*The ReactQuill component provides the content directly as an argument to its onChange callback; you don't need to use e.target.value  */}
+        <ReactQuill theme="snow"  value={recipe.recipeProcess}  onChange={(process) => setRecipe({ ...recipe, recipeProcess: process })} />  {/*The ReactQuill component provides the content directly as an argument to its onChange callback; you don't need to use e.target.value  */}
         <Button type='submit' variant='contained' >Submit</Button>
       </Grid>
       </form>

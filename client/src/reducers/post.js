@@ -5,9 +5,6 @@ export default (posts=[],action)=>{
             console.log(`action.payload1:${action?.payload}`)
             return [...posts,action?.payload]
         case FETCH_ALL_POSTS:
-            console.log('Me')
-            console.log(action?.payload)
-            console.log(posts)
             return [action?.payload]   
         case UPDATE:
              return [...posts,action?.payload]

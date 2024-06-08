@@ -6,9 +6,6 @@ import {signUp} from '../../actions/user';
 import {signIn} from '../../actions/user';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {GoogleLogin} from 'react-google-login';
-import GoogleIcon from '@mui/icons-material/Google';
-import {gapi} from 'gapi-script';
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(true);
@@ -29,31 +26,14 @@ const Auth = () => {
       dispatch(signIn(userData,navigate));
     }
   }
-  useEffect(()=>{
-    gapi.load("client:auth2",()=>{
-      gapi.auth2.init({clientId:clientId})
-    })
-  },[])
+
+
   const switchMode=()=>{
     // setIsSignUp(!isSignUp);
     setIsSignUp(prevIsSignUp => !prevIsSignUp);
     
   }
-  const googleSuccess=(res)=>{
-    console.log(res);
-    const result=res.profileObj;
-    const token=res.tokenId;
-    try {
-      dispatch({type:'AUTH', payload:{result,token}});
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
 
-  }
-  const googleFailure=()=>{
-    console.log("Google Sign in is unsuccessful try again")
-  }
   return (
     <Container maxWidth='xs' component='main'>
       <Paper className={classes.paper} elevation={3}>
@@ -79,17 +59,6 @@ const Auth = () => {
             </div>
           )}
           <Button type='submit' variant='contained'>Submit</Button>
-          <Typography sx={{textAlign:'center'}}>Or</Typography>
-          <GoogleLogin
-            clientId={clientId}
-            render={(renderProps)=>(
-              <Button onClick={renderProps.onClick} variant='contained' color='primary' startIcon={<GoogleIcon/>}>
-                Continue with Google
-              </Button>
-            )}
-            onSuccess={googleSuccess}
-            onFailure={googleFailure}
-          />
         </form>
       </Paper>
     </Container>
